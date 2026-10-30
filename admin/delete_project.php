@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/../includes/auth.php';require_once __DIR__.'/../includes/db.php';$q=$pdo->prepare("DELETE FROM projects WHERE id=?");$q->execute([(int)($_GET['id']??0)]);header('Location: dashboard.php');exit;

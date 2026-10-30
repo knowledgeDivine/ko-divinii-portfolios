@@ -1,0 +1,1 @@
+Place project cover images and your profile image here. Reference them using relative paths such as assets/images/project-cover.jpg.

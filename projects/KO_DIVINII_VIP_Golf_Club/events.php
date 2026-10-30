@@ -1,0 +1,7 @@
+<?php $pageTitle='Club Life | K.O. Divinii'; $active='events'; require 'includes/header.php'; $events=[]; if($pdo){$stmt=$pdo->query("SELECT * FROM events WHERE event_date >= CURDATE() ORDER BY event_date,event_time LIMIT 12");$events=$stmt->fetchAll();} ?>
+<section class="page-hero"><div class="container reveal"><div class="section-kicker">K.O. Divinii • Club life</div><h1>Beyond the course, there is a <em>calendar.</em></h1><p>Member dinners, tournament days, clinics and the small rituals that turn a course into a club.</p></div></section>
+<section class="section"><div class="container"><div class="events-grid">
+<?php if(!$events): ?><div class="card"><h2>No events loaded yet.</h2><p class="body-copy">Import the included SQL file, then refresh this page.</p></div><?php endif; ?>
+<?php foreach($events as $event): ?><article class="event-card reveal" data-tilt><div class="event-date"><b><?= e(date('d',strtotime($event['event_date']))) ?></b><span><?= e(date('M Y',strtotime($event['event_date']))) ?></span></div><span class="chip"><?= e($event['category']) ?></span><h3><?= e($event['title']) ?></h3><p><?= e($event['description']) ?></p><div class="event-meta"><span><i class="fa-regular fa-clock"></i><?= e(date('g:i A',strtotime($event['event_time']))) ?></span><span><i class="fa-solid fa-location-dot"></i><?= e($event['location']) ?></span></div></article><?php endforeach; ?>
+</div></div></section>
+<?php require 'includes/footer.php'; ?>
